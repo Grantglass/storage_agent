@@ -1,0 +1,32 @@
+
+# Aggregator block — collects all parallel slices back into lists.
+# `enriched_alert`, `risk_score`, `triage` are now lists of results (one per slice).
+
+from collections import Counter
+
+print(f"📊 Aggregated {len(enriched_alert)} processed alerts\n")
+
+# Triage summary
+triage_counts = Counter(triage)
+print("Triage breakdown:")
+for action, count in sorted(triage_counts.items(), key=lambda x: -x[1]):
+    bar = "█" * count
+    print(f"  {action:<22} {bar} ({count})")
+
+# Severity summary
+sev_counts = Counter(a["severity"] for a in enriched_alert)
+print("\nSeverity breakdown:")
+for sev in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
+    count = sev_counts.get(sev, 0)
+    bar = "█" * count
+    print(f"  {sev:<10} {bar} ({count})")
+
+# Highest risk alert
+top_alert = max(enriched_alert, key=lambda a: a["risk_score"])
+print(f"\n🚨 Highest-risk alert:")
+print(f"   event_id  : {top_alert['event_id']}")
+print(f"   type      : {top_alert['event_type']}")
+print(f"   severity  : {top_alert['severity']}")
+print(f"   source_ip : {top_alert['source_ip']}")
+print(f"   risk_score: {top_alert['risk_score']}")
+print(f"   triage    : {top_alert['triage']}")

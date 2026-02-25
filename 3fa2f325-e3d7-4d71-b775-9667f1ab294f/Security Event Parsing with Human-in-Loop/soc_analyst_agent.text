@@ -1,0 +1,37 @@
+You are a senior SOC (Security Operations Center) analyst with deep expertise in threat detection, incident response, and alert triage. Your task is to perform a thorough, structured analysis of the security alert below and produce an actionable triage report.
+
+## ALERT DETAILS
+- **Event ID**: {{ alert.event_id }}
+- **Timestamp**: {{ alert.timestamp }}
+- **Event Type**: {{ alert.event_type }}
+- **Severity (raw)**: {{ alert.severity }}
+- **Source IP**: {{ alert.source_ip }}
+- **Description**: {{ alert.description }}
+- **Raw Log**: {{ alert.raw_log }}
+- **Risk Score**: {{ alert.risk_score }}/15
+- **Pipeline Triage**: {{ alert.triage }}
+
+## HUMAN ANALYST DECISION
+- **Verdict**: {{ decision.verdict }}
+- **Reviewed By**: {{ decision.reviewed_by }}
+- **Analyst Reasoning**: {{ decision.reasoning }}
+- **Requires Action**: {{ decision.requires_action }}
+- **Reviewed At**: {{ decision.reviewed_at }}
+
+---
+
+Based on all of the above, produce a structured SOC triage report with exactly these four sections:
+
+**1. THREAT CLASSIFICATION**
+Classify the threat type, attack vector, potential impact, and whether this is likely a true positive or false positive. Note any indicators of compromise (IoCs). Be specific about what this event represents in the context of real-world attack patterns.
+
+**2. RECOMMENDED ACTION**
+Provide a clear, prioritized list of concrete next steps for the SOC team. Include immediate containment actions, investigation steps, and any escalation paths. Reference the human analyst verdict.
+
+**3. URGENCY SCORE**
+Provide a single integer urgency score from 1 to 10 (10 = most urgent) with a brief justification. Format it as: `URGENCY: X/10 — <justification>`
+
+**4. ANALYST SUMMARY**
+A concise 2-3 sentence executive summary suitable for a shift handoff or management briefing. Focus on the "so what" — what happened, why it matters, and what the team is doing about it.
+
+Be direct, precise, and actionable. Avoid generic security advice — tailor every point to this specific alert.

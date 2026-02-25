@@ -1,0 +1,312 @@
+id: 07926f76-eaa3-453c-b44c-798ad27d3421
+name: Security Event Parsing with Human-in-Loop
+type: 1
+canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+blocks:
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Routes highest-risk alert to SOC analyst for verdict (ESCALATE/INVESTIGATE/DISMISS);
+    passes remaining alerts through automated pipeline
+  height: 1000
+  id: 00dc0f19-def3-4d07-896e-5ab8b876a06a
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: human_review
+  parent_id: null
+  properties: {}
+  status: 3
+  type: 1
+  variables: null
+  width: 1600
+  x: 6000
+  y: 0
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Generates unified SOC incident dashboard merging reactive triage &
+    proactive threat intelligence with threat posture score, ranked incidents, kill-chain
+    watchlist, attack correlations, and ONTAP/DII API remediation calls
+  height: 1000
+  id: 19f80cb5-4309-49f4-805e-51059d3b044f
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: soc_unified_dashboard
+  parent_id: null
+  properties: {}
+  status: 3
+  type: 1
+  variables: null
+  width: 1600
+  x: 10000
+  y: 4200
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Applies MITRE ATT&CK classification, asset criticality scoring, blast
+    radius estimation, and weighted urgency formula to generate multi-step NetApp
+    storage threat triage reports with executable ONTAP/DII remediation API calls
+  height: 1000
+  id: 1d0254f6-7dce-46a3-b610-e90e48eded9a
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: reactive_soc_analyst
+  parent_id: null
+  properties: {}
+  status: 3
+  type: 1
+  variables: null
+  width: 1600
+  x: 8000
+  y: 0
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Generates unified SOC incident dashboard with threat posture score,
+    ranked incident list, human-reviewed alert analysis, risk watchlist, and cross-event
+    threat chain
+  height: 1000
+  id: 25d69eb8-04df-4c8e-a427-46f17cc0d44d
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: soc_incident_dashboard
+  parent_id: null
+  properties: {}
+  status: 1
+  type: 1
+  variables: null
+  width: 1600
+  x: 14000
+  y: 1400
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Matches security alerts with human review verdicts and prepares paired
+    data for SOC analyst triage
+  height: 1000
+  id: 2996f576-1843-47a5-a052-7a3cb01e25f4
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: prepare_soc_inputs
+  parent_id: null
+  properties: {}
+  status: 1
+  type: 1
+  variables: null
+  width: 1600
+  x: 8000
+  y: 1400
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Analyzes high-risk security alerts with GenAI to produce structured
+    SOC triage reports with threat classification, actions, urgency scores, and executive
+    summary
+  height: 1000
+  id: 2faa034c-ea59-4812-b47e-15da060a39bf
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: soc_analyst_agent
+  parent_id: null
+  properties:
+    all_blocks_context_in_prompt: false
+    id: null
+    inputModalities: null
+    max_tokens: 4096
+    model: anthropic.claude-3-haiku-20240307-v1:0
+    modelId: null
+    modelName: null
+    modelType: null
+    model_input_image: null
+    outputModalities: null
+    output_variable: output
+    provider: bedrock
+    region: eu-west-1
+    system_prompt: null
+    temperature: 0.5
+  status: 1
+  type: 9
+  variables: null
+  width: 1600
+  x: 10000
+  y: 1400
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Fetches NetApp storage security events from ONTAP EMS and DII APIs;
+    normalizes into unified schema and spreads for parallel threat processing
+  height: 1000
+  id: 5e03aedd-c7bb-4221-a344-be28ef91ad97
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: ingest_security_events
+  parent_id: null
+  properties: {}
+  status: 3
+  type: 1
+  variables: null
+  width: 1600
+  x: 0
+  y: 0
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Aggregates parallel alert processing results and displays triage breakdown,
+    severity distribution, and highest-risk alert
+  height: 1000
+  id: 64e55620-2cb6-4b86-96ea-3b9530fc85a2
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: aggregate_alerts
+  parent_id: null
+  properties: {}
+  status: 1
+  type: 15
+  variables: null
+  width: 1600
+  x: 4000
+  y: 0
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Consolidates SOC analyst triage report and threat hunt output into
+    unified variables for the incident dashboard
+  height: 1000
+  id: 745fdf1d-6fcc-44fe-8bcc-4501074e8226
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: relay_triage_report
+  parent_id: null
+  properties: {}
+  status: 1
+  type: 1
+  variables: null
+  width: 1600
+  x: 12000
+  y: 1400
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Persists proactive threat intelligence from hunter analysis to file,
+    enabling SOC dashboard access without variable conflicts
+  height: 1000
+  id: a828401e-f6de-4137-874d-bf069b7cd0a3
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: relay_hunter_output
+  parent_id: null
+  properties: {}
+  status: 3
+  type: 1
+  variables: null
+  width: 1600
+  x: 8000
+  y: 4200
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: "Reference guide for NetApp ONTAP and DII REST APIs\u2014auth methods,\
+    \ security endpoints, event schemas, webhook/polling mechanisms for SOC integration"
+  height: 1000
+  id: c65b4562-4b41-4e08-b370-286e0219644e
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: netapp_api_research
+  parent_id: null
+  properties: {}
+  status: 3
+  type: 1
+  variables: null
+  width: 1600
+  x: 0
+  y: 5800
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Detects weak threat signals missed by reactive pipeline, maps alerts
+    to MITRE ATT&CK kill chain stages, scores confidence & time-to-impact, generates
+    pre-emptive NetApp ONTAP API actions
+  height: 1000
+  id: ca9af79e-c2fc-47f3-a10c-4fc54771333e
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: proactive_threat_hunter
+  parent_id: null
+  properties: {}
+  status: 3
+  type: 1
+  variables: null
+  width: 1600
+  x: 6000
+  y: 1400
+- auto_size: false
+  canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  compute_settings: null
+  description: Scores security events by severity and source IP reputation, then assigns
+    triage action (escalate, alert, log, or ignore)
+  height: 1000
+  id: e2ec2cd3-481c-4470-b2b9-e200ffffc28d
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  name: process_alert
+  parent_id: null
+  properties: {}
+  status: 3
+  type: 1
+  variables: null
+  width: 1600
+  x: 2000
+  y: 0
+edges:
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 0b1b8e91-f08f-4310-ba10-374cfa023495
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: e2ec2cd3-481c-4470-b2b9-e200ffffc28d
+  target: 64e55620-2cb6-4b86-96ea-3b9530fc85a2
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 0b2eaa4d-3d90-4b75-afee-eefa46f9ecd2
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: 00dc0f19-def3-4d07-896e-5ab8b876a06a
+  target: 1d0254f6-7dce-46a3-b610-e90e48eded9a
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 13cba6d9-7617-4d5c-a163-45ab4fbf470a
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: 5e03aedd-c7bb-4221-a344-be28ef91ad97
+  target: e2ec2cd3-481c-4470-b2b9-e200ffffc28d
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 1adef9ba-a82d-4b64-99ae-c0fe17f2f2dc
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: 2996f576-1843-47a5-a052-7a3cb01e25f4
+  target: 2faa034c-ea59-4812-b47e-15da060a39bf
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 3793050a-ca0b-46d2-aa26-48a75e9be385
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: 745fdf1d-6fcc-44fe-8bcc-4501074e8226
+  target: 25d69eb8-04df-4c8e-a427-46f17cc0d44d
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 4726aca2-6da5-406b-8f96-063060b9fbed
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: 00dc0f19-def3-4d07-896e-5ab8b876a06a
+  target: 2996f576-1843-47a5-a052-7a3cb01e25f4
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 67dae168-d2a9-4862-aa12-0be504ffdfd2
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: 1d0254f6-7dce-46a3-b610-e90e48eded9a
+  target: 19f80cb5-4309-49f4-805e-51059d3b044f
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 7476ee75-186a-441e-a47e-96ea882db07b
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: 64e55620-2cb6-4b86-96ea-3b9530fc85a2
+  target: 00dc0f19-def3-4d07-896e-5ab8b876a06a
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 7c1f7c1d-b1cc-44d6-a195-601257eaa700
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: 2faa034c-ea59-4812-b47e-15da060a39bf
+  target: 745fdf1d-6fcc-44fe-8bcc-4501074e8226
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 7f71c512-4ef4-42f5-80d1-16310191d3e3
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: 64e55620-2cb6-4b86-96ea-3b9530fc85a2
+  target: ca9af79e-c2fc-47f3-a10c-4fc54771333e
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 8904ac09-4b9a-48d9-97a9-5b8bebc4b89a
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: a828401e-f6de-4137-874d-bf069b7cd0a3
+  target: 19f80cb5-4309-49f4-805e-51059d3b044f
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 953dc776-141c-4626-a132-76c18556f470
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: 00dc0f19-def3-4d07-896e-5ab8b876a06a
+  target: 2faa034c-ea59-4812-b47e-15da060a39bf
+- canvas_id: 3fa2f325-e3d7-4d71-b775-9667f1ab294f
+  id: 9ce4f71d-8f93-4d57-a4c3-d6a5744076f1
+  layer_id: 07926f76-eaa3-453c-b44c-798ad27d3421
+  source: ca9af79e-c2fc-47f3-a10c-4fc54771333e
+  target: a828401e-f6de-4137-874d-bf069b7cd0a3
